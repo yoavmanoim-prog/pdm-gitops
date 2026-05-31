@@ -5,13 +5,16 @@ metadata:
   namespace: argocd
 spec:
   project: default
-  source:
-    repoURL: https://github.com/yoavmanoim-prog/pdm-gitops
-    targetRevision: HEAD
-    path: staging/backend
-    helm:
-      valueFiles:
-        - values.yaml
+  sources:
+    - repoURL: https://github.com/yoavmanoim-prog/pdm-app
+      targetRevision: HEAD
+      path: helm/backend
+      helm:
+        valueFiles:
+          - $values/staging/backend/values.yaml
+    - repoURL: https://github.com/yoavmanoim-prog/pdm-gitops
+      targetRevision: HEAD
+      ref: values
   destination:
     server: https://kubernetes.default.svc
     namespace: pdm-staging
