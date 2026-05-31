@@ -1,0 +1,11 @@
+image:
+  repository: 302954730632.dkr.ecr.us-east-1.amazonaws.com/pdm-backend
+  tag: latest
+
+replicaCount: 2
+
+autoscaling:
+  enabled: true
+  minReplicas: 2
+  maxReplicas: 8
+  targetCPUUtilizationPercentage: 70
