@@ -1,0 +1,19 @@
+# Dev environment — deployed on every feature branch push
+# lightweight: 1 replica, no autoscaling, minimal resources
+image:
+  repository: 302954730632.dkr.ecr.us-east-1.amazonaws.com/pdm-backend
+  tag: latest
+
+replicaCount: 1
+
+autoscaling:
+  enabled: false
+
+# uses the same RDS instance as staging (dev shares the database)
+rds:
+  host: "pdm-prod-eks-postgres.ci3ceikmuv20.us-east-1.rds.amazonaws.com"
+
+postgres:
+  user: "pdm"
+  password: "Yoavmanoim70"
+  database: "pdm"
