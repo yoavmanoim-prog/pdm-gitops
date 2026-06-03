@@ -9,3 +9,12 @@ autoscaling:
   minReplicas: 2
   maxReplicas: 8
   targetCPUUtilizationPercentage: 70
+
+# point to RDS instead of the local postgres StatefulSet
+rds:
+  host: "pdm-prod-eks-postgres.ci3ceikmuv20.us-east-1.rds.amazonaws.com"
+
+postgres:
+  user: "pdm"
+  password: "Yoavmanoim70"
+  database: "pdm"

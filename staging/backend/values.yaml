@@ -6,3 +6,12 @@ replicaCount: 1
 
 autoscaling:
   enabled: false
+
+# staging also uses the same RDS instance (separate database schema in future)
+rds:
+  host: "pdm-prod-eks-postgres.ci3ceikmuv20.us-east-1.rds.amazonaws.com"
+
+postgres:
+  user: "pdm"
+  password: "Yoavmanoim70"
+  database: "pdm"
