@@ -2,7 +2,7 @@
 # lightweight: 1 replica, no autoscaling, minimal resources
 image:
   repository: 302954730632.dkr.ecr.us-east-1.amazonaws.com/pdm-backend
-  tag: 19e6c6e12e12e3592bd8fe451aa7b05e4f7c6b8c
+  tag: c78d1174390bdb066028bb370c75e6d5158057c8
 
 replicaCount: 1
 
