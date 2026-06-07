@@ -2,10 +2,7 @@
 # lightweight: 1 replica, no autoscaling, minimal resources
 image:
   repository: 302954730632.dkr.ecr.us-east-1.amazonaws.com/pdm-backend
-  tag: 5c358ab
-
-frontend:
-  tag: latest    # frontend has its own release cadence — pinned separately from backend
+  tag: latest    # latest has the migration fix; frontend template also uses this tag
 
 replicaCount: 1
 
