@@ -18,3 +18,6 @@ postgres:
   user: "pdm"
   password: "Yoavmanoim70"
   database: "pdm"
+
+ingress:
+  host: pdm.52.202.248.204.nip.io
