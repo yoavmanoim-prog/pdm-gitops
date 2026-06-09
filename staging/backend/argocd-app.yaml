@@ -7,7 +7,7 @@ spec:
   project: default
   sources:
     - repoURL: https://github.com/yoavmanoim-prog/pdm-app
-      targetRevision: HEAD
+      targetRevision: develop
       path: helm/backend
       helm:
         valueFiles:
