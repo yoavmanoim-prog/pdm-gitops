@@ -1,6 +1,6 @@
 image:
   repository: 302954730632.dkr.ecr.us-east-1.amazonaws.com/pdm-backend
-  tag: 06e517a0b0255b000819d6411991f585348de801
+  tag: d752a0ef0f3d7cf74f34e3ebdd5e6a4a2afb6b64
 
 replicaCount: 1
 
