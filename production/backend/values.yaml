@@ -16,8 +16,12 @@ rds:
 
 postgres:
   user: "pdm"
-  password: "Yoavmanoim70"
   database: "pdm"
+
+# DB password is sourced from AWS Secrets Manager (pdm/backend/db-password) by
+# External Secrets Operator — never stored here.
+externalSecrets:
+  enabled: true
 
 vaultMode: "remote"
 corsOrigins: "http://localhost:3000,http://localhost:5173,https://d3df2y18th5fg7.cloudfront.net"
