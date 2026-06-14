@@ -45,8 +45,8 @@ aws secretsmanager create-secret \
   --region us-east-1
 ```
 
-Use a **new** value here, not `Yoavmanoim70` — the old one is burned (it was in
-git history). Setting a new value here is also the rotation: step 2 applies it to RDS.
+Use a **new** value here, not the old committed password — that one is burned (it
+was in git history). Setting a new value here is also the rotation: step 2 applies it to RDS.
 
 ### 2. Apply pdm-infra #3
 
