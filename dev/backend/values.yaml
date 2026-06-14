@@ -2,22 +2,22 @@
 # lightweight: 1 replica, no autoscaling, minimal resources
 image:
   repository: 302954730632.dkr.ecr.us-east-1.amazonaws.com/pdm-backend
-  tag: 9d5a75d7e476f0e6cf7fd484ff131914ae0b20aa
+  tag: d375efacbc8a5da729e17a1f8066066273fccb5e
 
-replicaCount: 0
+replicaCount: 1
 
 autoscaling:
   enabled: false
 
-# uses the same RDS instance as staging (dev shares the database)
+# dev has its own database (pdm_dev) + user on the shared RDS instance.
 rds:
   host: "pdm-prod-eks-postgres.ci3ceikmuv20.us-east-1.rds.amazonaws.com"
 
 postgres:
-  user: "pdm"
-  database: "pdm"
+  user: "pdm_dev"
+  database: "pdm_dev"
 
-# DB password is sourced from AWS Secrets Manager (pdm/backend/db-password) by
-# External Secrets Operator — never stored here. See the chart's externalSecrets.
+# DB password is sourced from AWS Secrets Manager by External Secrets Operator.
 externalSecrets:
   enabled: true
+  passwordSecretName: pdm/dev/db-password
