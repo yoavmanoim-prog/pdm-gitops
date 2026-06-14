@@ -95,8 +95,8 @@ postgres:
 externalSecrets:
   enabled: true
 ```
-Watch the ExternalSecret sync and a fresh pod come up (zero-downtime via the surge
-strategy). This finally removes `Yoavmanoim70` from production's gitops values.
+Watch the ExternalSecret sync and a fresh pod come up. This removes the committed
+password from production's gitops values (the secret now comes from Secrets Manager).
 
 ### 7. Rotate the production password
 ```bash
@@ -119,7 +119,16 @@ their SM secrets (they are not managed by terraform).
 5. Production cutover to ESO.
 6. Rotate production (and separately staging/dev users).
 
-## Still-open exposure until this is done
-`Yoavmanoim70` remains in `production/backend/values.yaml` and in git history, so the
-production DB credential is still live until steps 6–7 complete. Staging is already
-done. History is only neutralized by the rotation (step 7), not by deleting files.
+## Status (2026-06-14) — DONE for prod + staging
+- ✅ `pdm_staging` / `pdm_dev` databases + users created; passwords in Secrets Manager.
+- ✅ **Staging** isolated onto `pdm_staging` — healthy.
+- ✅ **Production** cut over to ESO and **password rotated**. The old committed
+  password is now a **dead credential** (RDS rejects it), so the git-history exposure
+  is neutralized. Production runs on `pdm` with the new password, which lives only in
+  Secrets Manager.
+- ⏳ **Remaining:** make a 3rd node stick (capacity), then point **dev** at `pdm_dev`
+  and re-enable it (currently `replicaCount: 0`). Dev's values already use ESO and
+  carry no password.
+
+No DB password remains in any config file. The only copies of the old password are in
+git history, and it no longer authenticates.
