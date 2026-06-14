@@ -13,5 +13,9 @@ rds:
 
 postgres:
   user: "pdm"
-  password: "Yoavmanoim70"
   database: "pdm"
+
+# DB password is sourced from AWS Secrets Manager (pdm/backend/db-password) by
+# External Secrets Operator — never stored here. See the chart's externalSecrets.
+externalSecrets:
+  enabled: true
