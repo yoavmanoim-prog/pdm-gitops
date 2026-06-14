@@ -7,15 +7,16 @@ replicaCount: 1
 autoscaling:
   enabled: false
 
-# staging also uses the same RDS instance (separate database schema in future)
+# staging has its own database (pdm_staging) + user on the shared RDS instance,
+# isolated from production's pdm database.
 rds:
   host: "pdm-prod-eks-postgres.ci3ceikmuv20.us-east-1.rds.amazonaws.com"
 
 postgres:
-  user: "pdm"
-  database: "pdm"
+  user: "pdm_staging"
+  database: "pdm_staging"
 
-# DB password is sourced from AWS Secrets Manager (pdm/backend/db-password) by
-# External Secrets Operator — never stored here. See the chart's externalSecrets.
+# DB password is sourced from AWS Secrets Manager by External Secrets Operator.
 externalSecrets:
   enabled: true
+  passwordSecretName: pdm/staging/db-password
