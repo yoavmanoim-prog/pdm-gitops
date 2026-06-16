@@ -7,6 +7,12 @@ replicaCount: 1
 autoscaling:
   enabled: false
 
+# Host-scoped ingress so staging is individually addressable on the shared ELB
+# (nip.io resolves to the ELB IP; nginx routes by Host header). Production stays
+# catch-all for CloudFront.
+ingress:
+  host: staging.52.202.248.204.nip.io
+
 # staging has its own database (pdm_staging) + user on the shared RDS instance,
 # isolated from production's pdm database.
 rds:
