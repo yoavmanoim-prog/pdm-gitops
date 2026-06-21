@@ -23,6 +23,14 @@ postgres:
   database: "pdm_staging"
 
 # DB password is sourced from AWS Secrets Manager by External Secrets Operator.
+# JWT signing key + first-admin password are pulled the same way.
 externalSecrets:
   enabled: true
   passwordSecretName: pdm/staging/db-password
+  jwtSecretName: pdm/staging/jwt-secret
+  bootstrapAdminPasswordSecretName: pdm/staging/bootstrap-admin-password
+
+# User pool: seed the first admin on deploy and sign tokens with the real secret.
+auth:
+  bootstrapAdminEmail: yoav@pdm.com
+  jwtSecretEnabled: true
