@@ -22,6 +22,13 @@ postgres:
 # External Secrets Operator — never stored here.
 externalSecrets:
   enabled: true
+  jwtSecretName: pdm/backend/jwt-secret
+  bootstrapAdminPasswordSecretName: pdm/backend/bootstrap-admin-password
+
+# User pool: seed the first admin on deploy and sign tokens with the real secret.
+auth:
+  bootstrapAdminEmail: yoav@pdm.com
+  jwtSecretEnabled: true
 
 vaultMode: "remote"
 corsOrigins: "http://localhost:3000,http://localhost:5173,https://d3df2y18th5fg7.cloudfront.net"
