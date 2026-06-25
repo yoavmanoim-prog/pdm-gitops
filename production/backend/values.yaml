@@ -27,4 +27,4 @@ vaultMode: "remote"
 corsOrigins: "http://localhost:3000,http://localhost:5173,https://d3df2y18th5fg7.cloudfront.net"
 
 ingress:
-  host: pdm.52.202.248.204.nip.io
+  host: ""                 # catch-all: CloudFront forwards its own Host header
